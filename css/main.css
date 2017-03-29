@@ -6,6 +6,8 @@ h1 {
   text-align: center;
   color: white;
   text-shadow: 4px 4px 6px #000000;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 table {
@@ -16,7 +18,7 @@ table {
   /*border-collapse: collapse;*/
   margin: 50px auto;
   text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
-
+  margin-top: 2%;
 }
 
 td {
@@ -35,9 +37,24 @@ td:hover{background-color: #555555}
 body {
   background-image: url(Free-Chalkboard-Backgrounds.jpg); no-repeat center fixed;
   background-size: cover;
+  background-repeat: repeat;
 
 
   }
+.winner {
+    font-size: 80px;
+    color: #9400D3;
+    text-shadow: 4px 4px 6px #ADFF2F;
+    margin-left: 40%;
+  }
+
+.turn{
+  font-size: 30px;
+  color: white;
+  margin-left: 45%;
+}
+
+
 #restart {
   text-align: center;
   border-radius: 8px;

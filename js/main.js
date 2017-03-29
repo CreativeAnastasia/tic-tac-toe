@@ -1,27 +1,29 @@
 var state = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 var turn = 1;
+$turn = document.querySelector('.turn');
+  $turn.innerHTML = 'X turn';
+
 
 function changeTurn () {
   if (turn === 1){
+      $turn.innerHTML = 'O turn';
       turn = -1
   } else {
+    $turn.innerHTML = 'X turn';
     turn = 1;
   }
 }
 
-
+function start() {
   document.querySelector('.trx').addEventListener('click', update);
-
+};
 
 function update(evt){
-
-  console.log ("hi");
   // grab the element
   var el = evt.target;
 
   // get the index for the cell that you clicked on
   var cellNumber = parseInt(evt.target.classList[1]);
-  console.log('cellNumber =', cellNumber);
 
   // get the value of turn and update the element in the state array that
   // corresponds to the cell you clicked on
@@ -34,8 +36,6 @@ function update(evt){
     changeTurn();
   }
   winner(state);
-
-  console.log(state);
   render(state);
 }
 
@@ -50,6 +50,9 @@ function render(state){
     if (current === -1) {
       cells[i].innerHTML = 'O';
     }
+    if (current === 0) {
+      cells[i].innerHTML = "";
+    }
   }
 }
 
@@ -57,33 +60,39 @@ function render(state){
 function winner(state){
    var winCombinations = [ [0, 1, 2], [3, 4, 5], [6, 7, 8],
     [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6] ];
-
+    $winner = document.querySelector('.winner');
    for (var i=0; i <winCombinations.length; i++) {
         var combo = winCombinations[i];
         var a = state[combo[0]];
         var b = state[combo[1]];
         var c = state[combo[2]];
-        console.log(a,b,c);
-        console.log(combo);
         var sum = a+b+c;
         if (sum === 3){
-          return console.log(" winner x");
+          $winner.innerHTML = 'X Wins!';
+
+
         }
         else if (sum === -3){
-          return console.log(" winner o");
+          $winner.innerHTML = 'O Wins!';
         }
-
-        console.log('-----------');
-
    }
    if (state.indexOf(0) === -1) { // else if there are no zeros left
-     console.log ('Tie');
+     $winner.innerHTML = 'Tie!';
    }
 
-}
-
-function tie(state){
 
 }
 
+
+$("#restart").on('click', function(e) {
+    state = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+    changeTurn(1);
+    $winner.innerHTML = "";
+    render(state);
+
+      });
+
+
+
+start(state);
 
